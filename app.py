@@ -83,5 +83,25 @@ if st.button("Gerar PDF"):
         "valor": valor,
         "data_contrato": data_contrato.strftime("%d de %B de %Y")
     }
+
+    # Nome do arquivo temporário gerado
+    caminho_pdf = f"outputs/proposta_{dados_evento['recepcao'].lower()}.pdf"
+
+    # Gera o PDF e salva em disco
     gerar_pdf(selecionados, dados_evento)
-    st.success("PDF gerado com sucesso!")
+
+    # Verifica se o PDF foi gerado corretamente
+    if os.path.exists(caminho_pdf):
+        with open(caminho_pdf, "rb") as f:
+            pdf_bytes = f.read()
+
+        st.success("PDF gerado com sucesso!")
+
+        st.download_button(
+            label="📥 Baixar PDF",
+            data=pdf_bytes,
+            file_name="proposta.pdf",
+            mime="application/pdf"
+        )
+    else:
+        st.error("Erro ao gerar o PDF. Verifique a função 'gerar_pdf'.")
