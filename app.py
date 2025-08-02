@@ -1,3 +1,13 @@
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install("fpdf2")
+
+# Resto do seu código...
+
 import streamlit as st
 import pandas as pd
 from modelo_pdf import gerar_pdf
