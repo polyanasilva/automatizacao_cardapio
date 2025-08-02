@@ -18,28 +18,28 @@ def gerar_pdf(dados):
 
 
     # 2. Conteudo do cardapio
-    pdf.set_font("Arial", 'B', 16)
-    pdf.cell(200, 10, txt="Cardápio Personalizado", ln=True, align="C")
-
-    pdf.set_font("Arial", size=12)
+    pdf.set_font("Times", size=12)
 
     for categoria, itens in dados.items():
         if itens:
             pdf.ln(10)
-            pdf.set_font("Arial", 'B', 14)
+            pdf.set_font("Times", 'B', 14)
             pdf.cell(200, 10, txt=categoria, ln=True)
-            pdf.set_font("Arial", size=12)
+            pdf.set_font("Times", size=12)
             for item in itens:
                 pdf.cell(200, 8, txt=f" - {item}", ln=True)
 
+
+
+
+
     # 3. Adiciona a IMAGEM DO RODAPÉ no fim da página
     # Altura da imagem: digamos que seja 25 mm
-    altura_rodape = 25
+    altura_rodape = 100
     y_pos = 297 - altura_rodape  # 297 é a altura da página A4
 
     pdf.image("assets/image3.png", x=0, y=y_pos, w=210, h=altura_rodape)
 
     # Salvar PDF
-    pdf.output("cardapio.pdf")
+    pdf.output("outputs/cardapio.pdf")
 
-    pdf.output("cardapio.pdf")

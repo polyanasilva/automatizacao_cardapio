@@ -6,7 +6,7 @@ from modelo_pdf import gerar_pdf
 st.title("Gerador de Cardápio do Buffet")
 
 # Carregar catálogo
-df = pd.read_csv("catalogo.csv")
+df = pd.read_csv("data/catalogo.csv")
 
 # Agrupar por categoria
 categorias = df["categoria"].unique()
