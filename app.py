@@ -2,10 +2,19 @@ import streamlit as st
 import pandas as pd
 from modelo_pdf import gerar_pdf
 import os
+import base64
 
 # Título
 st.set_page_config(layout="wide")
 st.title("Gerador de Proposta - Dois Gastronomia Buffet")
+
+# download
+def download_pdf(pdf_path):
+    with open(pdf_path, "rb") as f:
+        pdf = f.read()
+    b64 = base64.b64encode(pdf).decode()
+    href = f'<a href="data:application/pdf;base64,{b64}" download="Proposta.pdf">Baixar PDF</a>'
+    st.markdown(href, unsafe_allow_html=True)
 
 # Novo: Seção de edição do catálogo
 with st.expander("📝 Editar Catálogo (Administrativo)"):
@@ -84,3 +93,4 @@ if st.button("Gerar PDF"):
     }
     gerar_pdf(selecionados, dados_evento)
     st.success("PDF gerado com sucesso!")
+    download_pdf(f"outputs/proposta_{dados_evento['recepcao'].lower()}.pdf")

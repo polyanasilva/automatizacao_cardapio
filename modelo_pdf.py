@@ -65,4 +65,5 @@ def gerar_pdf(dados, dados_evento):
     pdf.image("assets/image3.png", x=0, y=y_pos, w=210, h=altura_rodape)
 
     # Salvar PDF
-    pdf.output(f"outputs/proposta_{dados_evento['recepcao'].lower()}.pdf")
+    caminho = f"outputs/proposta_{dados_evento['recepcao'].lower()}.pdf"
+    pdf.output(caminho)
